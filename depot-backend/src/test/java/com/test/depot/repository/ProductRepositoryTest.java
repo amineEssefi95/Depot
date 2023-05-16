@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataMongoTest
-@SpringJUnitConfig
 class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
@@ -49,6 +47,9 @@ class ProductRepositoryTest {
         List<Product> products = productRepository.findAll();
 
         assertEquals(3, products.size());
+        assertEquals("c1", products.get(0).getCategory());
+        assertEquals("p1", products.get(0).getName());
+        assertEquals(3, products.get(0).getQuantity());
     }
 
     @Test
@@ -57,6 +58,9 @@ class ProductRepositoryTest {
         List<Product> products = productRepository.findByCategoryIgnoreCaseAndQuantityGreaterThan("c1", 0);
 
         assertEquals(1, products.size());
+        assertEquals("c1", products.get(0).getCategory());
+        assertEquals("p1", products.get(0).getName());
+        assertEquals(3, products.get(0).getQuantity());
     }
 
     @AfterEach
