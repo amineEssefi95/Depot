@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ProductsService} from "../../service/products.service";
+import {Product} from "../../modal/product";
 
 @Component({
   selector: 'app-find-products',
@@ -9,7 +10,7 @@ import {ProductsService} from "../../service/products.service";
 export class FindProductsComponent {
 
   searchText: String = '';
-  products: any[] = [];
+  products: Product[] = [];
 
   constructor(private productService: ProductsService) { }
 
